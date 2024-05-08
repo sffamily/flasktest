@@ -17,5 +17,14 @@ create a new or pick existing ACA environment
 ![alt text](image-2.png)
 
 Give it a unique name, then wait until the process done. You will see the status like this:
-![alt text](image-3.png)
+![alt text](image-4.png)
 
+Click blue button and follow the instruction to open the deployed URL on ACA.
+
+Or go to Azure Portal, find the ACA deployed "Application URL"
+![alt text](image-5.png)
+
+Now fire up browser and run an API <Application URL>/books, it should show:
+![alt text](image-6.png)
+
+Now it is running in the cloud from ACA!
