@@ -1,0 +1,32 @@
+name: Run New Finetune Job
+
+on:
+  push:
+    paths:
+      - 'myfinetunejob/**' # Specify the path to your specific subfolder
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+#      - name: Set up Azure CLI
+#        uses: azure/login@v2
+#        with:
+#          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Install AzCopy
+        run: |
+          wget -O azcopy.tar.gz https://aka.ms/downloadazcopy-v10-linux && tar -xf azcopy.tar.gz --strip-components=1
+          sudo mv azcopy /usr/bin/
+  
+ #     - name: Run Azure Deployment
+ #       run: |
+ #         az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+ #         az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+ #         az deployment group create --resource-group <resource-group-name> --template-file <path-to-template-file> --parameters <path-to-parameters-file>
+ #         azcopy copy '<localpath>' '<my-azure-file-share-path>' --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}
+ #         az containerapp job start --name "<my-job-name>" --resource-group "<my-resource-group>" --workspace-name "<my-workspace-name>" --workspace-resource-group "<my-workspace-resource-group>" --path "<myfinetunejob>" --timeout 3600 --wait
