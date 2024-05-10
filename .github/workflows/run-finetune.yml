@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'myfinetunejob/**' # Specify the path to your specific subfolder
+  workflow_dispatch:
 
 jobs:
   deploy:
